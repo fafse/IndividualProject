@@ -1,0 +1,99 @@
+To appear	Появляться
+To cancel	Отменять
+To bite	Кусать
+To regret	Сожалеть
+To blow	Дуть (о ветре)
+To compose	Составлять
+To congratulate	Поздравлять
+To correct	Исправлять
+To fall asleep	Засыпать
+To burn	Гореть
+To invent	Придумать
+To mention	Упоминать
+To suppose	Предполагать
+To suggest	Предлагать
+To consider	Размышлять
+To escape	Сбегать
+To publish	Публиковать
+To solve	Решить
+To tidy up	Убираться
+To win	Выиграть
+To swallow	Глотать
+To follow	Следовать
+To abandon	Покидать
+To be able	Быть в состоянии
+To abuse	Оскорблять
+To accelerate	Ускорять
+To reveal	Раскрывать
+To consist of	Состоять из
+To include	Включать
+To guess	Думать
+To accept	Одобрять
+To formulate	Формулировать
+To form	Формировать
+To achieve	Достигать
+To acknowledge	Подтверждать
+To act	Действовать
+To adhere	Придерживаться
+To admire	Восхищаться
+To adjust	Адаптировать
+To advise	Советовать
+To allow	Позволять
+To improve	Улучшать
+To edit	Редактировать
+To conclude	Включать в себя
+To settle	Располагаться
+To handle	Справиться
+To boost	Увеличить
+To amplify	Усилить
+To appeal	Просить
+To assemble	Собираться
+To assess	Оценивать
+To assist	Присутствовать
+To astonish	Удивлять
+To assure	Убеждать
+To avoid	Избегать
+To await	Ожидать
+To pick up	Подбирать
+To cross off	Вычеркивать
+To claim	Утверждать
+To hurry up	Торопиться
+To find out	Находить
+To divide	Делить
+To bark	Лаять
+To bathe	Купаться
+To beat	Бить
+To blackmail	Шантажировать
+To spent	Тратить
+To send	Посылать
+To laugh	Смеяться
+To struggle	Бороться
+To motivate	Мотивировать
+To perceive	Воспринимать
+To receive	Получать
+To recognize	Распознавать
+To remain	Напоминать
+To retain	Удержать
+To remember	Помнить
+To observed	Исследовать
+To fight	Драться
+To renew	Обновлять
+To keep calm	Успокаиваться
+To break up	Разрушать
+To focus	Фокусироваться
+To perform	Исполнять обязанности
+To offer	Предлагать
+To display	Отображать
+To behave	Вести себя
+To get rid	Избавляться
+To squeeze	Выжимать
+To release	Выпускать
+To push	Толкать
+To foster	Поощрять
+To enhance	Расширять
+To develop	Развивать
+To envelop	Окутывать
+To obtain	Получить
+To investigate	Расследовать
+To adore	Обожать
+To block out	Блокировать
