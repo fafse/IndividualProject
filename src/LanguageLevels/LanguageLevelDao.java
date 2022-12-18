@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 public class LanguageLevelDao {
-    private final List<LanguageLevel> levels = new ArrayList<LanguageLevel>();
+    private final List<LanguageLevel> levels = new ArrayList<>();
     private String pathToFolder="words\\";
 
     public LanguageLevelDao() throws SQLException {
@@ -37,12 +37,9 @@ public class LanguageLevelDao {
                     "(" + first + ", " + second + ", "+third+")");
     }
 
-    private LanguageLevel findByLevel(String level)
-    {
-        for(var languageLevel:levels)
-        {
-            if(languageLevel.getLevel().equals(level))
-            {
+    private LanguageLevel findByLevel(String level) {
+        for(var languageLevel:levels) {
+            if(languageLevel.getLevel().equals(level)) {
                 return languageLevel;
             }
         }
@@ -51,7 +48,9 @@ public class LanguageLevelDao {
 
     public Set<String> getWords(String level) throws LanguageLevelNotFoundException, SQLException {
         Set<String> words=new HashSet<>();
-
+        if(findByLevel(level)==null) {
+            throw new LanguageLevelNotFoundException("Unavailable to find " + level);
+        }
         level = getLowerLevel(level);
         LanguageLevel tmp = findByLevel(level);
         Statement statement = tmp.getStatement();

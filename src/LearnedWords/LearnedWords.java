@@ -1,12 +1,6 @@
 package LearnedWords;
 
-import Checkers.Checkers;
-import FileWorker.FileWorker;
-
-import java.io.IOException;
 import java.sql.*;
-import java.util.HashSet;
-import java.util.Set;
 
 public class LearnedWords {
     private final Connection conn;

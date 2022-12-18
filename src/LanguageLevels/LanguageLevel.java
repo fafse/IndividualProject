@@ -1,8 +1,5 @@
 package LanguageLevels;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.*;
 
 public class LanguageLevel {
@@ -12,8 +9,6 @@ public class LanguageLevel {
     static private final String user = "sa";
     static private final String password = "";
     private final Statement statement;
-
-
 
     public LanguageLevel(String level) throws SQLException {
         this.level = level;
@@ -44,7 +39,6 @@ public class LanguageLevel {
     public int getNumWords() throws SQLException {
         try (ResultSet result = statement.executeQuery("SELECT MAX(ID) AS MAX FROM " + level)) {
             if (result.next()) {
-
                 return result.getInt(1);
             } else {
                 return 0;

@@ -12,8 +12,9 @@ public class Checkers {
             public static <T> T valueChecker(String msg, Scanner scanner, Function<Scanner, T> readfunc, Function<Scanner, Boolean> checkFunc){
                 do{
                     System.out.print(msg + ": ");
-                    if(checkFunc.apply(scanner))
+                    if(checkFunc.apply(scanner)) {
                         return readfunc.apply(scanner);
+                    }
                     else {
                         System.out.println("Введено неверное значение.");
                         scanner.nextLine();

@@ -1,8 +1,10 @@
+package IndividualProject.src;
+
 import Checkers.Checkers;
 import Exceptions.LanguageLevelNotFoundException;
 import Exceptions.LearnedWordNotFoundException;
 import FileWorker.FileWorker;
-import Recommenations.Reccomendator;
+import Reccomendations.Reccomendator;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,8 +15,7 @@ import java.util.Set;
 
 public class IndividualProject {
 
-    public static void printReccomendations(String text, Set<String> reccomendations,int wordPerDay)
-    {
+    public static void printReccomendations(String text, Set<String> reccomendations,int wordPerDay) {
         int i = 1;
         System.out.println(text);
         System.out.println("===================================================");
@@ -28,11 +29,12 @@ public class IndividualProject {
     }
 
     public static void main(String[] args) throws IOException, SQLException, LanguageLevelNotFoundException, LearnedWordNotFoundException {
-        String level = args[0];
-
+        Reccomendator reccomendator = new Reccomendator();
+        String name = args[0];
+        String level = args[1];
         String dataBasePath = "/DataBase/EnglishLevels/";
         String path = "C:\\Users\\k5469\\IdeaProjects\\IndividualProject\\words\\";
-        Reccomendator reccomendator = new Reccomendator();
+
         Set<String> reccomendations=null;
 
         Scanner cin = new Scanner(System.in);
@@ -47,51 +49,41 @@ public class IndividualProject {
                 System.out.println("5. Mark word as studied");
                 System.out.println("0. Exit");
                 menu = Checkers.Existance.MeaningCheckers.valueChecker(">",cin,Scanner::nextInt,Scanner::hasNextInt);
-                switch (menu)
-                {
-                    case 1:
-                    {
+                switch (menu) {
+                    case 1: {
                         reccomendations= new HashSet<>(reccomendator.getRecommendations(level,3));
                         printReccomendations("Reccomendations for a Day:",reccomendations,3);
                         fileWorker.writeFile(reccomendations);
                         break;
                     }
-                    case 2:
-                    {
+                    case 2: {
                         reccomendations= new HashSet<>(reccomendator.getRecommendations(level,21));
                         printReccomendations("Reccomendation for a Week:",reccomendations,3);
                         fileWorker.writeFile(reccomendations);
                         break;
                     }
-                    case 3:
-                    {
+                    case 3: {
                         reccomendations= new HashSet<>(reccomendator.getRecommendations(level,90));
                         printReccomendations("Reccomendation for a Month:",reccomendations,3);
                         fileWorker.writeFile(reccomendations);
                         break;
                     }
-                    case 4:
-                    {
+                    case 4: {
 
                         reccomendations=new HashSet<>(fileWorker.readFile());
-                        if(reccomendations.isEmpty())
-                        {
+                        if(reccomendations.isEmpty()) {
                             System.out.println("Now reccomendations is empty...\nTry to generate them");
-                        }else
-                        {
+                        }else {
                             printReccomendations("Cur reccomendations",reccomendations,3);
                         }
                         break;
                     }
-                    case 5:
-                    {
+                    case 5: {
                         reccomendations=new HashSet<>(fileWorker.readFile());
-                        if(reccomendations.isEmpty())
-                        {
+                        if(reccomendations.isEmpty()) {
                             System.out.println("Now reccomendations is empty...\nTry to generate them");
                             break;
-                        }else
-                        {
+                        }else {
                             printReccomendations("Cur reccomendations",reccomendations,3);
                         }
                         int id;
@@ -101,8 +93,7 @@ public class IndividualProject {
                             id = menu = Checkers.Existance.MeaningCheckers.valueChecker(">", cin, Scanner::nextInt, Scanner::hasNextInt);
                         }while(id>reccomendations.size()||id<1);
                         Iterator it=reccomendations.iterator();
-                        for(int i = 0;i<id&& it.hasNext();i++)
-                        {
+                        for(int i = 0;i<id&& it.hasNext();i++) {
                             learnedWord=it.next().toString();
                         }
                         reccomendator.addLearnedWord(learnedWord);
@@ -111,8 +102,7 @@ public class IndividualProject {
                         System.out.println("I deleted "+learnedWord);
                         break;
                     }
-                    case 0:
-                    {
+                    case 0: {
                         if(!reccomendations.isEmpty()) {
                             fileWorker.writeFile(reccomendations);
                         }

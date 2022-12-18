@@ -1,16 +1,13 @@
 package FileWorker;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class FileWorker {
     private String pathToFile;
 
-    public FileWorker(String pathToFile)
-    {
+    public FileWorker(String pathToFile) {
         this.pathToFile=pathToFile;
     }
 
@@ -20,8 +17,7 @@ public class FileWorker {
                     words) {
                 out.write(word+"\n");
             }
-        }catch (FileNotFoundException e)
-        {
+        }catch (FileNotFoundException e) {
             System.out.println("Unavailable to find file...."+pathToFile);
             return false;
         }
@@ -37,8 +33,7 @@ public class FileWorker {
                 words.add(word);
                 word = in.readLine();
             }
-        }catch (FileNotFoundException e)
-        {
+        }catch (FileNotFoundException e) {
             throw new FileNotFoundException();
         }
         return words;
