@@ -3,10 +3,7 @@ package LanguageLevels;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class LanguageLevel {
     private final Connection conn;
@@ -14,19 +11,24 @@ public class LanguageLevel {
     private final String connectionUrl;
     static private final String user = "sa";
     static private final String password = "";
+    private final Statement statement;
 
-    public LanguageLevel(String level, String connectionUrl) throws SQLException {
+
+
+    public LanguageLevel(String level) throws SQLException {
         this.level = level;
-        this.connectionUrl= "jdbc:h2:"+connectionUrl;
+        this.connectionUrl="jdbc:h2:/DataBase/EnglishLevels/"+level;
         this.conn = DriverManager.getConnection(this.connectionUrl, user, password);
-        Statement statement = null;
-        statement = conn.createStatement();
+        this.statement = conn.createStatement();
         String createOrders = "create table if not exists "+level+" " +
-                "(WORD VARCHAR NOT NULL, " +
+                "(ID INT PRIMARY KEY AUTO_INCREMENT, "+
+                "WORD VARCHAR NOT NULL, " +
                 "TRANSLATION varchar NOT NULL)";
         statement.execute(createOrders);
     }
-
+    public Statement getStatement() {
+        return statement;
+    }
     public String getConnectionUrl() {
         return connectionUrl;
     }
@@ -39,6 +41,15 @@ public class LanguageLevel {
         return conn;
     }
 
+    public int getNumWords() throws SQLException {
+        try (ResultSet result = statement.executeQuery("SELECT MAX(ID) AS MAX FROM " + level)) {
+            if (result.next()) {
+                return result.getInt(1);
+            } else {
+                return 0;
+            }
 
+        }
+    }
 
 }

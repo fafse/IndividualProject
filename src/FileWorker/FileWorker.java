@@ -2,16 +2,14 @@ package FileWorker;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class FileWorker {
-    private final String pathToFile;
-    public FileWorker(String pathToFile)
-    {
-        this.pathToFile=pathToFile;
-    }
+    private String pathToFile="words\\myWords.txt";
 
-    public Boolean writeFile(List<String> words) throws IOException {
+    public Boolean writeFile(Set<String> words) throws IOException {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(pathToFile))) {
             for (var word :
                     words) {
@@ -25,8 +23,8 @@ public class FileWorker {
         return true;
     }
 
-    public List<String> readFile() throws IOException {
-        List<String> words = new ArrayList<>();
+    public Set<String> readFile() throws IOException {
+        Set<String> words = new HashSet<>();
         try (BufferedReader in = new BufferedReader(new FileReader(pathToFile))) {
             words.add(in.readLine());
         }catch (FileNotFoundException e)
