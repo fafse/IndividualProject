@@ -7,7 +7,12 @@ import java.util.List;
 import java.util.Set;
 
 public class FileWorker {
-    private String pathToFile="words\\myWords.txt";
+    private String pathToFile;
+
+    public FileWorker(String pathToFile)
+    {
+        this.pathToFile=pathToFile;
+    }
 
     public Boolean writeFile(Set<String> words) throws IOException {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(pathToFile))) {

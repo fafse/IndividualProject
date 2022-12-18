@@ -10,7 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LanguageLevelDao {
     private final List<LanguageLevel> levels = new ArrayList<LanguageLevel>();
@@ -30,8 +32,6 @@ public class LanguageLevelDao {
         levels.add(new LanguageLevel("C2"));
     }
 
-
-
     private void update(Statement statement,String tableName, int first, String second, String third) throws SQLException {
             statement.execute("INSERT INTO " + tableName +  " VALUES" +
                     "(" + first + ", " + second + ", "+third+")");
@@ -47,6 +47,33 @@ public class LanguageLevelDao {
             }
         }
         return null;
+    }
+
+    public Set<String> getWords(String level) throws LanguageLevelNotFoundException, SQLException {
+        Set<String> words=new HashSet<>();
+
+        level = getLowerLevel(level);
+        System.out.println(level);
+        LanguageLevel tmp = findByLevel(level);
+        Statement statement = tmp.getStatement();
+        if(statement==null) {
+            throw new LanguageLevelNotFoundException("Unavailable to find " + level);
+        }
+        do{
+            level = getLowerLevel(tmp.getLevel());
+            tmp = findByLevel(level);
+            statement = tmp.getStatement();
+            for (int i = 1; i < tmp.getNumWords(); i++) {
+                try (ResultSet result = statement.executeQuery("SELECT * FROM " + level + " " +
+                        "WHERE ID = " + "'" + i + "'")) {
+                    if (result.next()) {
+                        words.add(result.getString("WORD") + "\t" + result.getString("TRANSLATION"));
+                    }
+                }
+            }
+
+        }while(!tmp.getLevel().equals(getLowerLevel(level)));
+        return words;
     }
 
     public String getWord(String level) throws LanguageLevelNotFoundException, SQLException {
@@ -77,7 +104,17 @@ public class LanguageLevelDao {
         }
     }
 
-    public void filltables() throws IOException, SQLException, LanguageLevelNotFoundException {
+    public String getLowerLevel(String level)
+    {
+        LanguageLevel tmp = findByLevel(level);
+        int indexLowerLevel = levels.indexOf(tmp)-1;
+        if(indexLowerLevel==-1) {
+            return level;
+        }else {
+            return levels.get(indexLowerLevel).getLevel();
+        }
+    }
+    public void fillTables() throws IOException, SQLException, LanguageLevelNotFoundException {
 
         for(var level:levels) {
             if (!Checkers.Existance.tableExists(pathToFolder + level.getLevel() + ".txt")) {
