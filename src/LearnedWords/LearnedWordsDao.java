@@ -50,7 +50,9 @@ public class LearnedWordsDao {
             }
         }
     }
-
+    public int getNumWords() throws SQLException {
+        return learnedWords.getNumWords();
+    }
     public void addLearnedWord(int id,String word) throws SQLException {
         String[] learnedword= word.split("\t");
         if(!isAdded(learnedword[0])) {

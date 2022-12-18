@@ -53,7 +53,6 @@ public class LanguageLevelDao {
         Set<String> words=new HashSet<>();
 
         level = getLowerLevel(level);
-        System.out.println(level);
         LanguageLevel tmp = findByLevel(level);
         Statement statement = tmp.getStatement();
         if(statement==null) {

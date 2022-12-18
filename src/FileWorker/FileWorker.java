@@ -18,7 +18,7 @@ public class FileWorker {
         try (BufferedWriter out = new BufferedWriter(new FileWriter(pathToFile))) {
             for (var word :
                     words) {
-                out.write(word);
+                out.write(word+"\n");
             }
         }catch (FileNotFoundException e)
         {
@@ -30,8 +30,13 @@ public class FileWorker {
 
     public Set<String> readFile() throws IOException {
         Set<String> words = new HashSet<>();
+
         try (BufferedReader in = new BufferedReader(new FileReader(pathToFile))) {
-            words.add(in.readLine());
+            String word = in.readLine();
+            while(word!=null) {
+                words.add(word);
+                word = in.readLine();
+            }
         }catch (FileNotFoundException e)
         {
             throw new FileNotFoundException();
